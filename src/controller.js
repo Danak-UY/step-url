@@ -3,7 +3,6 @@ const {
   urlHasQueryParam,
   replaceQuery,
   joinNames,
-  escapeRegExp,
   openUrl,
   resolvePath,
   readFile,
@@ -33,17 +32,17 @@ const getStepsUrl = (routes, steps) => {
   const namesFound = [];
   const currentSteps = [];
 
-  console.log("script arr ->", steps);
   steps.forEach((step) => {
     if (!lastRoute) {
-      throw `"404 - Step | ${currentSteps.join(" : ")}`;
+      throw `404 - Step | ${currentSteps.join(" : ")}`;
     }
 
-    const stepName = step[PARAMS.name];
+    const stepRoute = lastRoute[step];
+    const stepName = stepRoute && stepRoute[PARAMS.name];
     stepName && namesFound.push(stepName);
 
     currentSteps.push(step);
-    lastRoute = lastRoute[step];
+    lastRoute = stepRoute;
   });
 
   return { route: lastRoute, names: namesFound };
@@ -53,13 +52,12 @@ const redirectRoute = (route, names, query) => {
   const routeNames = joinNames(names);
 
   if (!route) {
-    throw `404 - Route | ${routeNames}`;
+    throw `404 - Route ${routeNames && "| " + routeNames}`;
   }
 
   if (testValidUrl(route)) {
-    if (urlHasQueryParam(route)) {
-      const routeWithQuery = replaceQuery(route, query);
-      return openUrl(routeWithQuery, `${routeNames} | ${query}`);
+    if (urlHasQueryParam(route) && query) {
+      return openSearchUrl(route, query, routeNames);
     }
 
     return openUrl(route, routeNames);
@@ -69,12 +67,20 @@ const redirectRoute = (route, names, query) => {
     return openUrl(route[PARAMS.url], routeNames);
   }
 
-  if (urlHasQueryParam(route[PARAMS.search])) {
-    const routeWithQuery = replaceQuery(route[PARAMS.search], query);
-    return openUrl(routeWithQuery, `${routeNames} | ${query}`);
+  if (
+    testValidUrl(route[PARAMS.search]) &&
+    urlHasQueryParam(route[PARAMS.search]) &&
+    query
+  ) {
+    return openSearchUrl(route[PARAMS.search], query, routeNames);
   }
 
   throw "404 - Url";
+};
+
+const openSearchUrl = (url, query, names) => {
+  const routeWithQuery = replaceQuery(url, query);
+  return openUrl(routeWithQuery, `${names && " | " + names + " " + query}`);
 };
 
 module.exports = { getConfigFile, getDividedSteps, getStepsUrl, redirectRoute };

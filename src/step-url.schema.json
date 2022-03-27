@@ -1,0 +1,47 @@
+{
+  "$id": "https://example.com/person.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Step-Url Config",
+  "description": "Configuration and Routes for Raycast Step-url script",
+  "type": "object",
+  "properties": {
+    "configs": {
+      "type": "object",
+      "description": "Configuration for steps and url query",
+      "properties": {
+        "dividers": {
+          "type": "array",
+          "description": "Posible steps dividers",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "wildcard": {
+          "type": "string",
+          "description": "Query wildcard to be replaced"
+        }
+      }
+    },
+    "routes": {
+      "type": "object",
+      "description": "Steps to open proper url",
+      "properties": {
+        "_name": {
+          "type": "string",
+          "description": "Name of the current step"
+        },
+        "_url": {
+          "type": "string",
+          "description": "Url of the final step"
+        },
+        "_search": {
+          "type": "string",
+          "description": "Url with query wildcard to be replaced"
+        }
+      }
+    }
+  },
+  "required": ["configs", "routes"]
+}

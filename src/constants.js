@@ -1,6 +1,6 @@
 const CONFIG_PATH = "./step-url.config.json";
 
-const QUERY_PARAM = "%s%";
+const QUERY_PARAM = "%s";
 const SPLIT_PARAM = "&";
 const JOIN_PARAM = " > ";
 

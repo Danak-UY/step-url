@@ -12,8 +12,6 @@ const {
     const [steps, query] = getArgs();
     validateArgs(steps, query);
 
-    console.log("script args ->", steps, query);
-
     const {
       routes,
       configs: { dividers, wildcard },
@@ -25,6 +23,6 @@ const {
 
     redirectRoute(route, names, query);
   } catch (err) {
-    console.log(err);
+    console.warn(err);
   }
 })();

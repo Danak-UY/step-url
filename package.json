@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node ./dist/bundle.js",
     "build": "webpack --config webpack.config.js --mode=production",
     "execute": "node ./dist/bundle.js",
     "dev": "nodemon ./src/index.js \"q.w:e-r_t|y/i a.s:d-f_g|h/k n\"",
     "dev:search": "nodemon ./src/index.js gh test",
-    "dev:route": "nodemon ./src/index.js nr:fe:mla",
+    "dev:route": "nodemon ./src/index.js gh-ry-scripts",
     "test": "npm run build && npm run execute",
     "prepare": "npm run build && npm run concat && npm run copy-config",
-    "concat": "concat-cli -f ./src/raycast-config.js ./dist/bundle.js -o ./dist/setp-url.js",
+    "concat": "concat-cli -f ./src/raycast.config.js ./dist/bundle.js -o ./dist/step-url.js",
     "copy-config": "copyfiles -u 1 ./src/step-url.config.json ./dist"
   },
   "author": "",
@@ -31,6 +30,8 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.3",
     "babel-preset-es2015": "^6.24.1",
+    "concat-cli": "^4.0.0",
+    "copyfiles": "^2.4.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
   }
