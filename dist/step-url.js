@@ -102,20 +102,20 @@ const redirectRoute = (route, names, query) => {
     throw `404 - Route ${routeNames && "| " + routeNames}`;
   }
 
-  if (testValidUrl(route)) {
-    if (urlHasQueryParam(route) && query) {
-      return openSearchUrl(route, query, routeNames);
-    }
-
-    return openUrl(route, routeNames);
-  }
-
   if (testValidUrl(route[PARAMS.url])) {
     return openUrl(route[PARAMS.url], routeNames);
   }
 
   if (testValidUrl(route[PARAMS.search]) && urlHasQueryParam(route[PARAMS.search]) && query) {
     return openSearchUrl(route[PARAMS.search], query, routeNames);
+  }
+
+  if (testValidUrl(route)) {
+    if (urlHasQueryParam(route) && query) {
+      return openSearchUrl(route, query, routeNames);
+    }
+
+    return openUrl(route, routeNames);
   }
 
   throw "404 - Url";
@@ -742,18 +742,18 @@ const {
     const [steps, query] = getArgs();
     validateArgs(steps, query);
     const {
-      routes,
-      configs: {
-        dividers,
-        wildcard
+      $routes,
+      $configs: {
+        $dividers,
+        $wildcard
       }
     } = await getConfigFile();
-    __webpack_require__.g.wildcard = wildcard;
-    const dividedSteps = getDividedSteps(steps, dividers);
+    __webpack_require__.g.wildcard = $wildcard;
+    const dividedSteps = getDividedSteps(steps, $dividers);
     const {
       route,
       names
-    } = getStepsUrl(routes, dividedSteps);
+    } = getStepsUrl($routes, dividedSteps);
     redirectRoute(route, names, query);
   } catch (err) {
     console.warn(err);
