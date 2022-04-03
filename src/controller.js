@@ -55,24 +55,27 @@ const redirectRoute = (route, names, query) => {
     throw `404 - Route ${routeNames && "| " + routeNames}`;
   }
 
+  const routeUrl = route[PARAMS.url];
+  if (routeUrl && testValidUrl(routeUrl)) {
+    return openUrl(routeUrl, routeNames);
+  }
+
+  const routeSearch = route[PARAMS.search];
+  if (
+    routeSearch &&
+    testValidUrl(routeSearch) &&
+    urlHasQueryParam(routeSearch) &&
+    query
+  ) {
+    return openSearchUrl(routeSearch, query, routeNames);
+  }
+
   if (testValidUrl(route)) {
     if (urlHasQueryParam(route) && query) {
       return openSearchUrl(route, query, routeNames);
     }
 
     return openUrl(route, routeNames);
-  }
-
-  if (testValidUrl(route[PARAMS.url])) {
-    return openUrl(route[PARAMS.url], routeNames);
-  }
-
-  if (
-    testValidUrl(route[PARAMS.search]) &&
-    urlHasQueryParam(route[PARAMS.search]) &&
-    query
-  ) {
-    return openSearchUrl(route[PARAMS.search], query, routeNames);
   }
 
   throw "404 - Url";
