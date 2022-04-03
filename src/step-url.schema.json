@@ -5,11 +5,11 @@
   "description": "Configuration and Routes for Raycast Step-url script",
   "type": "object",
   "properties": {
-    "configs": {
+    "$configs": {
       "type": "object",
       "description": "Configuration for steps and url query",
       "properties": {
-        "dividers": {
+        "$dividers": {
           "type": "array",
           "description": "Posible steps dividers",
           "items": {
@@ -18,13 +18,21 @@
           "minItems": 1,
           "uniqueItems": true
         },
-        "wildcard": {
+        "$wildcard": {
           "type": "string",
           "description": "Query wildcard to be replaced"
+        },
+        "$comboWildcard": {
+          "type": "string",
+          "description": "Combo wildcard to indicate search for combo steps"
         }
       }
     },
-    "routes": {
+    "$combos": {
+      "type": "object",
+      "description": "Steps to open multiple urls",
+    },
+    "$routes": {
       "type": "object",
       "description": "Steps to open proper url",
       "properties": {
@@ -43,5 +51,8 @@
       }
     }
   },
-  "required": ["configs", "routes"]
+  "required": [
+    "$configs",
+    "$routes"
+  ]
 }
