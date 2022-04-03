@@ -13,13 +13,13 @@ const {
     validateArgs(steps, query);
 
     const {
-      routes,
-      configs: { dividers, wildcard },
+      $routes,
+      $configs: { $dividers, $wildcard },
     } = await getConfigFile();
-    global.wildcard = wildcard;
+    global.wildcard = $wildcard;
 
-    const dividedSteps = getDividedSteps(steps, dividers);
-    const { route, names } = getStepsUrl(routes, dividedSteps);
+    const dividedSteps = getDividedSteps(steps, $dividers);
+    const { route, names } = getStepsUrl($routes, dividedSteps);
 
     redirectRoute(route, names, query);
   } catch (err) {

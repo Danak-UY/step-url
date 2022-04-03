@@ -1,11 +1,16 @@
 {
-  "configs": {
-    "dividers": [".", ":", "-", "_", " ", "|", "/", "+"],
-    "wildcard": "%s"
+  "$configs": {
+    "$dividers": [".", ":", "-", "_", " ", "|", "/", "+"],
+    "$wildcard": "%s",
+    "$comboWildcard": "cb"
   },
-  "routes": {
+  "$combos": {
+    "gh": ["gh-ry", "gh-ry-scripts"]
+  },
+  "$routes": {
     "gh": {
       "_name": "GitHub",
+      "_url": "https://github.com",
       "_search": "https://duckduckgo.com/?q=%s",
       "ry": {
         "_name": "Raycast",
