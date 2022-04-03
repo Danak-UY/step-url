@@ -45,7 +45,7 @@ const getStepsUrl = (routes, steps) => {
     lastRoute = stepRoute;
   });
 
-  return { route: lastRoute, names: namesFound };
+  return [lastRoute, namesFound];
 };
 
 const redirectRoute = (route, names, query) => {
