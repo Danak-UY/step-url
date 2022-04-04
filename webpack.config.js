@@ -19,7 +19,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimize: false,
+    minimize: true,
   },
   node: {
     global: true,
