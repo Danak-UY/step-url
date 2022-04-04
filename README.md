@@ -6,7 +6,7 @@ Script to fast open url with [raycast](https://www.raycast.com/) based on a regi
 
 ## How to use it
 
-- Dowload the `step-url.js` script and `step-url.config.json` files and place them **on the same folder**
+- Dowload the [`step-url.js`](dist/step-url.js) script and [`step-url.config.json`](dist/step-url.config.json) files and place them **on the same folder**
 - Edit `step-url.config.json` to your needs adding nested steps
 
 ## Config File
@@ -25,4 +25,4 @@ The config file contains all the urls accesible for the script and different div
   - `_url` -> The url for that step
   - `_search` -> Url with the query wildcard to be replaced
 
-> You may validate the config file with `step-url.schema.json`
+> You may validate the config file with [`step-url.schema.json`](src/step-url.schema.json)
