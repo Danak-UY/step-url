@@ -5,7 +5,7 @@
     "$comboWildcard": "cb"
   },
   "$combos": {
-    "gh": ["gh-ry", "gh-ry-scripts"]
+    "gh": ["gh", "gh-ry", "gh-ry-scripts"]
   },
   "$routes": {
     "gh": {
