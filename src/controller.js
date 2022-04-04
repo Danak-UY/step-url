@@ -55,11 +55,6 @@ const redirectRoute = (route, names, query) => {
     throw `404 - Route ${routeNames && "| " + routeNames}`;
   }
 
-  const routeUrl = route[PARAMS.url];
-  if (routeUrl && testValidUrl(routeUrl)) {
-    return openUrl(routeUrl, routeNames);
-  }
-
   const routeSearch = route[PARAMS.search];
   if (
     routeSearch &&
@@ -68,6 +63,11 @@ const redirectRoute = (route, names, query) => {
     query
   ) {
     return openSearchUrl(routeSearch, query, routeNames);
+  }
+
+  const routeUrl = route[PARAMS.url];
+  if (routeUrl && testValidUrl(routeUrl)) {
+    return openUrl(routeUrl, routeNames);
   }
 
   if (testValidUrl(route)) {
