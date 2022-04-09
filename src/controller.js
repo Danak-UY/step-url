@@ -2,14 +2,15 @@ const {
   testValidUrl,
   urlHasQueryParam,
   replaceQuery,
-  joinNames,
   openUrl,
   resolvePath,
   readFile,
   parseJsonFile,
 } = require("./utils");
 
-const { PARAMS, SPLIT_PARAM } = require("./constants");
+const { generateMessage } = require("./logs");
+
+const { PARAMS, SPLIT_PARAM, STATUS } = require("./constants");
 
 const getConfigFile = async () => {
   const configFilePath = resolvePath();
@@ -24,7 +25,7 @@ const getDividedSteps = (steps, dividers) => {
     steps = steps.replaceAll(div, SPLIT_PARAM);
   });
 
-  return steps.split(SPLIT_PARAM).filter((s) => s);
+  return steps.split(SPLIT_PARAM).filter(Boolean);
 };
 
 const getStepsUrl = (routes, steps) => {
@@ -34,7 +35,7 @@ const getStepsUrl = (routes, steps) => {
 
   steps.forEach((step) => {
     if (!lastRoute) {
-      throw `404 - Step | ${currentSteps.join(" : ")}`;
+      throw generateMessage(STATUS.NOT_FOUND, "Step", currentSteps);
     }
 
     const stepRoute = lastRoute[step];
@@ -49,10 +50,8 @@ const getStepsUrl = (routes, steps) => {
 };
 
 const redirectRoute = (route, names, query) => {
-  const routeNames = joinNames(names);
-
   if (!route) {
-    throw `404 - Route ${routeNames && "| " + routeNames}`;
+    throw generateMessage(STATUS.NOT_FOUND, "Route", names);
   }
 
   const routeSearch = route[PARAMS.search];
@@ -62,28 +61,28 @@ const redirectRoute = (route, names, query) => {
     urlHasQueryParam(routeSearch) &&
     query
   ) {
-    return openSearchUrl(routeSearch, query, routeNames);
+    return openSearchUrl(routeSearch, names, query);
   }
 
   const routeUrl = route[PARAMS.url];
   if (routeUrl && testValidUrl(routeUrl)) {
-    return openUrl(routeUrl, routeNames);
+    return openUrl(routeUrl, names);
   }
 
   if (testValidUrl(route)) {
     if (urlHasQueryParam(route) && query) {
-      return openSearchUrl(route, query, routeNames);
+      return openSearchUrl(route, names, query);
     }
 
-    return openUrl(route, routeNames);
+    return openUrl(route, names);
   }
 
-  throw "404 - Url";
+  throw generateMessage(STATUS.NOT_FOUND, "Url");
 };
 
-const openSearchUrl = (url, query, names) => {
+const openSearchUrl = (url, names, query) => {
   const routeWithQuery = replaceQuery(url, query);
-  return openUrl(routeWithQuery, `${names && " | " + names + " " + query}`);
+  return openUrl(routeWithQuery, names, query);
 };
 
 module.exports = { getConfigFile, getDividedSteps, getStepsUrl, redirectRoute };
