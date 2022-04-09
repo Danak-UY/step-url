@@ -29,7 +29,17 @@
     },
     "$combos": {
       "type": "object",
-      "description": "Steps to open multiple urls",
+      "description": "Steps to open multiple routes",
+      "properties": {
+        "_name": {
+          "type": "string",
+          "description": "Name of the current combo step"
+        },
+        "_routes": {
+          "type": "array",
+          "description": "Routes to find the url to open"
+        }
+      }
     },
     "$routes": {
       "type": "object",

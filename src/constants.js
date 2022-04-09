@@ -10,6 +10,7 @@ const PARAMS = {
   name: "_name",
   url: "_url",
   search: "_search",
+  routes: "_routes",
 };
 
 const URL_REGEX = new RegExp(
