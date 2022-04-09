@@ -26,7 +26,7 @@ const urlHasQueryParam = (url) => url.includes(global.wildcard || QUERY_PARAM);
 const replaceQuery = (url, query) =>
   url.replace(global.wildcard || QUERY_PARAM, query);
 
-const joinNames = (names) => names.join(JOIN_PARAM);
+const joinNames = (names) => names?.join(JOIN_PARAM);
 
 const escapeRegExp = (str) => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
