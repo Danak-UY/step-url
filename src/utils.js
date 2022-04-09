@@ -6,8 +6,6 @@ const { CONFIG_PATH, QUERY_PARAM, URL_REGEX, STATUS } = require("./constants");
 
 const { generateMessage, showMessage } = require("./logs");
 
-const { generateMessage, showMessage } = require("./logs");
-
 const getArgs = () => {
   return process.argv.slice(2);
 };

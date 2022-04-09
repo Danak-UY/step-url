@@ -1,12 +1,8 @@
 const { getArgs, validateArgs } = require("./utils");
 const { showMessage } = require("./logs");
+const { handleStepUrl, handleComboUrl } = require("./main");
 
-const {
-  getConfigFile,
-  getDividedSteps,
-  getStepsUrl,
-  redirectRoute,
-} = require("./controller");
+const { getConfigFile, getDividedSteps } = require("./controller");
 
 (async () => {
   try {
@@ -24,25 +20,10 @@ const {
     const [firstStep] = dividedSteps;
 
     if (firstStep === $comboWildcard) {
-      const [, ...comboSteps] = dividedSteps;
-
-      const [routes] = getStepsUrl($combos, comboSteps);
-
-      const urls = routes.map((r) => {
-        const dividedSteps = getDividedSteps(r, $dividers);
-        return getStepsUrl($routes, dividedSteps);
-      });
-
-      urls.map(([route, names]) => {
-        redirectRoute(route, names);
-      });
-
-      return;
+      return handleComboUrl($combos, $routes, dividedSteps, $dividers);
     }
 
-    const [route, names] = getStepsUrl($routes, dividedSteps);
-
-    redirectRoute(route, names, query);
+    handleStepUrl($routes, dividedSteps, query);
   } catch (err) {
     showMessage(err);
   }
