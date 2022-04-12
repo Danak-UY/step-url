@@ -1,11 +1,31 @@
 {
   "$configs": {
-    "$dividers": [".", ":", "-", "_", " ", "|", "/", "+"],
+    "$dividers": [
+      ".",
+      ":",
+      "-",
+      "_",
+      " ",
+      "|",
+      "/",
+      "+"
+    ],
     "$wildcard": "%s",
     "$comboWildcard": "cb"
   },
   "$combos": {
-    "gh": ["gh", "gh-ry", "gh-ry-scripts"]
+    "gh": {
+      "_name": "Github",
+      "_routes": [
+        "gh",
+        "gh-ry",
+        "gh-ry-scripts"
+      ],
+      "ry": [
+        "gh-ry",
+        "gh-ry-scripts"
+      ]
+    }
   },
   "$routes": {
     "gh": {
