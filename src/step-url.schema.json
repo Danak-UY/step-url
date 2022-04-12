@@ -31,13 +31,16 @@
       "type": "object",
       "description": "Steps to open multiple routes",
       "properties": {
-        "_name": {
-          "type": "string",
-          "description": "Name of the current combo step"
-        },
-        "_routes": {
-          "type": "array",
-          "description": "Routes to find the url to open"
+        "^[a-z0-9]+$": {
+          "oneOf": [
+            {
+              "type": "array",
+              "description": "Steps of urls to be opened"
+            },
+            {
+              "$ref": "#/$defs/route"
+            }
+          ]
         }
       }
     },
@@ -79,6 +82,20 @@
         "_search": {
           "type": "string",
           "description": "Url with query wildcard to be replaced"
+        }
+      }
+    },
+    "route": {
+      "type": "object",
+      "description": "Steps to open multiple routes",
+      "properties": {
+        "_name": {
+          "type": "string",
+          "description": "Name of the current combo step"
+        },
+        "_routes": {
+          "type": "array",
+          "description": "Routes to find the url to open"
         }
       }
     }
