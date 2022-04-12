@@ -1,4 +1,5 @@
 const { getArgs, validateArgs } = require("./utils");
+const { showMessage } = require("./logs");
 
 const {
   getConfigFile,
@@ -20,10 +21,11 @@ const {
     global.wildcard = $wildcard;
 
     const dividedSteps = getDividedSteps(steps, $dividers);
+    const [firstStep] = dividedSteps;
 
-    if (dividedSteps[0] === $comboWildcard) {
+    if (firstStep === $comboWildcard) {
       const [, ...comboSteps] = dividedSteps;
-      console.log(comboSteps);
+
       const [routes] = getStepsUrl($combos, comboSteps);
 
       const urls = routes.map((r) => {
@@ -31,7 +33,7 @@ const {
         return getStepsUrl($routes, dividedSteps);
       });
 
-      urls.forEach(([route, names]) => {
+      urls.map(([route, names]) => {
         redirectRoute(route, names);
       });
 
@@ -42,6 +44,6 @@ const {
 
     redirectRoute(route, names, query);
   } catch (err) {
-    console.warn(err);
+    showMessage(err);
   }
 })();
