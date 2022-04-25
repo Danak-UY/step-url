@@ -31,7 +31,7 @@
     "gh": {
       "_name": "GitHub",
       "_url": "https://github.com",
-      "_search": "https://duckduckgo.com/?q=%s",
+      "_search": "https://duckduckgo.com/?q=%s&t=%s",
       "ry": {
         "_name": "Raycast",
         "_url": "https://github.com/raycast",

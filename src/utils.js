@@ -21,7 +21,7 @@ const testValidUrl = (url) => URL_REGEX.test(url);
 const urlHasQueryParam = (url) => url.includes(global.wildcard || QUERY_PARAM);
 
 const replaceQuery = (url, query) =>
-  url.replace(global.wildcard || QUERY_PARAM, query);
+  url.replaceAll(global.wildcard || QUERY_PARAM, query);
 
 const escapeRegExp = (str) => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
