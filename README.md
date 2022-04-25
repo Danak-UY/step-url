@@ -6,8 +6,9 @@ Script to fast open url with [raycast](https://www.raycast.com/) based on a regi
 
 ## How to use it
 
-- Dowload the [`step-url.js`](dist/step-url.js) script and [`step-url.config.json`](dist/step-url.config.json) files and place them **on the same folder**
-- Edit `step-url.config.json` to your needs adding nested steps
+- Dowload the `step-url.zip` from the [latest release](https://github.com/Danak-UY/step-url/releases/latest) and place files and place `step-url.js` and `step-url.config.json` **on the same folder**
+- Configure the new script in [Raycast config](https://developer.mozilla.org/search)
+- Edit `step-url.config.json` to your needs adding nested steps or combos
 
 ## Config File
 
