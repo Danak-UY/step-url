@@ -28,7 +28,7 @@ const escapeRegExp = (str) => {
 };
 
 const openUrl = (url, names, query = "") => {
-  const type = query ? "Searhcing" : "Opening";
+  const type = query ? "Searching" : "Opening";
   showMessage(generateMessage(STATUS.OK, type, names, query));
   open(url);
 };

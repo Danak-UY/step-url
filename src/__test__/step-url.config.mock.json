@@ -1,0 +1,37 @@
+{
+    "$configs": {
+        "$dividers": [
+            ".",
+            ":",
+            "-",
+            "_",
+            " ",
+            "|",
+            "/",
+            "+"
+        ],
+        "$wildcard": "%s",
+        "$comboWildcard": "cb"
+    },
+    "$combos": {
+        "search": {
+            "_name": "Search Engines Combo",
+            "_routes": [
+                "se",
+                "se-ggl",
+                "se-ddg",
+                "se-bing"
+            ]
+        }
+    },
+    "$routes": {
+        "se": {
+            "_name": "Search Engines",
+            "_url": "https://www.test.com",
+            "_search": "https://www.google.com/search?q=%s&o=%s",
+            "ggl": "https://www.google.com",
+            "ddg": "https://www.duckduckgo.com",
+            "bing": "https://www.bing.com"
+        }
+    }
+}
