@@ -10,7 +10,7 @@
     "dev:search": "nodemon ./src/index.js gh test",
     "dev:route": "nodemon ./src/index.js gh-ry-scripts",
     "dev:combo": "nodemon ./src/index.js cb-gh",
-    "test": "jest",
+    "test": "jest --config jest.config.js",
     "test:build": "npm run build && npm run execute",
     "prepare:releade": "npm run build && npm run concat && npm run copy-config",
     "concat": "concat-cli -f ./src/raycast.config.js ./dist/bundle.js -o ./dist/step-url.js",
