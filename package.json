@@ -12,7 +12,7 @@
     "dev:combo": "nodemon ./src/index.js cb-gh",
     "test": "jest",
     "test:build": "npm run build && npm run execute",
-    "prepare": "npm run build && npm run concat && npm run copy-config",
+    "prepare:releade": "npm run build && npm run concat && npm run copy-config",
     "concat": "concat-cli -f ./src/raycast.config.js ./dist/bundle.js -o ./dist/step-url.js",
     "copy-config": "copyfiles -u 1 ./src/step-url.config.json ./dist"
   },
