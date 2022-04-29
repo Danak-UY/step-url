@@ -5,14 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode=production",
-    "execute": "node ./dist/bundle.js",
-    "dev": "nodemon ./src/index.js \"q.w:e-r_t|y/i a.s:d-f_g|h/k n\"",
-    "dev:search": "nodemon ./src/index.js gh test",
-    "dev:route": "nodemon ./src/index.js gh-ry-scripts",
-    "dev:combo": "nodemon ./src/index.js cb-gh",
-    "test": "jest --config jest.config.js",
+    "build:release": "npm run build && npm run concat && npm run copy-config",
+    "test": "jest --config jest.config.js --coverage",
     "test:build": "npm run build && npm run execute",
-    "prepare:releade": "npm run build && npm run concat && npm run copy-config",
+    "execute": "node ./dist/bundle.js",
     "concat": "concat-cli -f ./src/raycast.config.js ./dist/bundle.js -o ./dist/step-url.js",
     "copy-config": "copyfiles -u 1 ./src/step-url.config.json ./dist"
   },
